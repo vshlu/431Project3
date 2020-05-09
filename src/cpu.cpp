@@ -264,7 +264,7 @@ void CPU::complete() {
 
 void CPU::retire() {
 	// TODO Your code here
-	Instruction* inst = rob.head().getInst;
+	Instruction* inst = rob.head.getInst();
 	// retire instructions from head of rob
 	if(inst->hasCompleted()){
 		inst->setRetireCycle(cycle);
