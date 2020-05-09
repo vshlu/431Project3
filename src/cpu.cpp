@@ -251,8 +251,8 @@ void CPU::complete() {
 				retireStage.push(inst);
 				// broadcast the result to mapping table and reservation stations
 				// set ready bit of the destination register
-				T = mapTable.setReadyBit(inst->getDstPhysicalReg());
-				T.setReady(true);
+				rob.setT(mapTable.setReadyBit(inst->getDstPhysicalReg()));
+				rob.getT().setReady(true);
 				hasProgress = true;
 			}
 		}
@@ -264,13 +264,13 @@ void CPU::complete() {
 
 void CPU::retire() {
 	// TODO Your code here
-	Instruction* inst = rob.head.getInst();
+	Instruction* inst = rob.getHead().getInst();
 	// retire instructions from head of rob
 	if(inst->hasCompleted()){
 		inst->setRetireCycle(cycle);
 		// setRetireCycle for the instruction that is retired
 		// update freePhysRegsPrevCycle array that add the physical registers in current cycle to the free list in the beginning of next cycle
-		Told = mapTable.setReadyBit(inst->getDstPhysicalReg().getRegNum());
+		rob.setTold(mapTable.setReadyBit(inst->getDstPhysicalReg().getRegNum()));
 		freePhysRegsPrevCycle[cycle] = Told;
 		// update architectural mapping table
 		archMappingTable.setMapping(inst->getDstOp(), inst->dstPhysicalReg());
