@@ -245,7 +245,7 @@ void CPU::complete() {
 			instList.erase(instList[i]);
 			i--;
 			startExeCycle = inst->getExecuteCycle();
-			exeTime = instList[i].getExecTime();
+			exeTime = instList[i]->getExecTime();
 			if((startExeCycle + exeTime) <= cycle){
 				// add instructions to retireStage that finished their execution time and current cycle
 				retireStage.push(inst);
