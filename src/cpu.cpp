@@ -273,7 +273,7 @@ void CPU::retire() {
 		Told = mapTable.setReadyBit(inst->getDstPhysicalReg().getRegNum());
 		freePhysRegsPrevCycle[cycle] = Told;
 		// update architectural mapping table
-		archMappingTable.setMapping(inst->getDstOp, inst->dstPhysicalReg);
+		archMappingTable.setMapping(inst->getDstOp(), inst->dstPhysicalReg());
 		hasProgress = true;
 	}
 	
