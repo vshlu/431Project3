@@ -234,7 +234,7 @@ void CPU::execute() {
 
 void CPU::complete() {
 	// TODO Your code here
-	std::vector<Instruction>&  instList = completeState.getAllInstructions();
+	std::vector<Instruction>&  instList = completeStage.getAllInstructions();
 	int i;
 	int startExeCycle;
 	int exeTime;
@@ -242,7 +242,7 @@ void CPU::complete() {
 		// setCompleteCycle for the instruction that is completed
 		Instruction* inst = instList[i];
 		if(inst->getDstOp() != -1){
-			instList[i].erase;
+			instList[i].erase();
 			i--;
 			startExeCycle = inst->getExecuteCycle();
 			exeTime = instList[i]->getExecTime();
