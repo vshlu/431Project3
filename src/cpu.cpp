@@ -234,7 +234,7 @@ void CPU::execute() {
 
 void CPU::complete() {
 	// TODO Your code here
-	std::vector<Instruction>&  instList = completeStage.getAllInstructions();
+	vector<Instruction>&  instList = completeStage.getAllInstructions();
 	int i;
 	int startExeCycle;
 	int exeTime;
@@ -245,7 +245,7 @@ void CPU::complete() {
 			instList[i].erase();
 			i--;
 			startExeCycle = inst->getExecuteCycle();
-			exeTime = instList[i]->getExecTime();
+			exeTime = instList[i].getExecTime();
 			if((startExeCycle + exeTime) <= cycle){
 				// add instructions to retireStage that finished their execution time and current cycle
 				retireStage.push(inst);
