@@ -234,7 +234,7 @@ void CPU::execute() {
 
 void CPU::complete() {
 	// TODO Your code here
-	vector<Instruction>&  instList = completeStage.getAllInstructions();
+	vector<Instruction*>&  instList = completeStage.getAllInstructions();
 	int i;
 	int startExeCycle;
 	int exeTime;
